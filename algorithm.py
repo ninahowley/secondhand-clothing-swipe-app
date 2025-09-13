@@ -51,6 +51,7 @@ def prediction(style, color, clothing_type):
     prob = model.predict_proba(X_new_encoded)[0][1]
     return prob
 
+# Testing the algorithm
 print("Emo top:", prediction("emo", "black", "top"))
 print("Twee dress:", prediction("twee", "pink", "dress"))
 
