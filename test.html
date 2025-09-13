@@ -16,7 +16,10 @@
   <img id="image-display" src=""/>
   <h3 id="title"></h3>
   <p id="descr"></p>
-  <button id="next-button" disabled>Next Image</button>
+  
+  <button id="dislike" disabled>❌</button>
+  <button id="like" disabled>❤️</button>
+  
   
   <!-- PapaParse CSV parser -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
@@ -25,7 +28,9 @@
     const imageElement = document.getElementById("image-display");
     const title = document.getElementById("title");
     const descr = document.getElementById("descr");
-    const nextButton = document.getElementById("next-button");
+
+    const dislike = document.getElementById("dislike");
+    const like = document.getElementById("like");
 
     let imageUrls = [];
     let currentIndex = 0;
@@ -52,12 +57,22 @@
         imageElement.src = imageUrls[currentIndex];
         title.innerText = titles[currentIndex];
         descr.innerText = descrs[currentIndex];
-        nextButton.disabled = false;
+        
+        dislike.disabled = false;
+        like.disabled = false;
+
       },
     });
 
     // Cycle to next image when button clicked
-    nextButton.addEventListener("click", () => {
+    like.addEventListener("click", () => {
+      if (imageUrls.length === 0) return;
+      currentIndex = (currentIndex + 1) % imageUrls.length;
+      imageElement.src = imageUrls[currentIndex];
+      title.innerText = titles[currentIndex];
+      descr.innerText = descrs[currentIndex];
+    });
+    dislike.addEventListener("click", () => {
       if (imageUrls.length === 0) return;
       currentIndex = (currentIndex + 1) % imageUrls.length;
       imageElement.src = imageUrls[currentIndex];
