@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dynamic Image Cycler from CSV</title>
+  <style>
+    img {
+      max-width: 400px;
+      height: auto;
+      display: block;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <img id="image-display" src=""/>
+  <h3 id="title"></h3>
+  <p id="descr"></p>
+  <button id="next-button" disabled>Next Image</button>
+  
+  <!-- PapaParse CSV parser -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+  <script>
+    const imageElement = document.getElementById("image-display");
+    const title = document.getElementById("title");
+    const descr = document.getElementById("descr");
+    const nextButton = document.getElementById("next-button");
+
+    let imageUrls = [];
+    let currentIndex = 0;
+
+    // Load and parse CSV
+    Papa.parse("clothing.csv", {
+      download: true,
+      header: true,
+      complete: function(results) {
+        // Extract image URLs from the last column named 'image_url'
+        imageUrls = results.data
+          .map(row => row.image)
+        titles = results.data
+          .map(row => row.title)
+        descrs = results.data
+          .map(row => row.description)
+
+        if (imageUrls.length === 0) {
+          imageElement.alt = "No images found in CSV.";
+          return;
+        }
+
+        // Show first image
+        imageElement.src = imageUrls[currentIndex];
+        title.innerText = titles[currentIndex];
+        descr.innerText = descrs[currentIndex];
+        nextButton.disabled = false;
+      },
+    });
+
+    // Cycle to next image when button clicked
+    nextButton.addEventListener("click", () => {
+      if (imageUrls.length === 0) return;
+      currentIndex = (currentIndex + 1) % imageUrls.length;
+      imageElement.src = imageUrls[currentIndex];
+      title.innerText = titles[currentIndex];
+      descr.innerText = descrs[currentIndex];
+    });
+  </script>
+
+</body>
+</html>
