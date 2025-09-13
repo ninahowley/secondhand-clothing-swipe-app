@@ -55,5 +55,45 @@ def recommend_items(catalog, top_n=3):
 
 def recommend_outfits():
 
+    catalog = catalog.copy()
 
-    assert NotImplementedError
+    # Score every item
+    catalog["score"] = catalog.apply(lambda r: prediction(r["style"], r["color"], r["type"]), axis=1)
+
+    # Get all available types
+    types = catalog['type'].unique()
+
+    outfit = []
+
+    can_top_bottom = "top" in types and "bottom" in types
+    can_dresses = "dress" in types 
+
+    
+    # Best top and bottom score
+    best_top_score = catalog[catalog["type"]=="top"]["score"].max()
+    best_bottom_score = catalog[catalog["type"]=="bottom"]["score"].max()
+    combo_score = (best_top_score + best_bottom_score) / 2.0
+    # Best dress score
+    best_dress_score = catalog[catalog["type"]=="dress"]["score"].max()
+    if combo_score >= best_dress_score:
+        # Recommend top-bottom
+        best_top = catalog[catalog["type"]=="top"].loc[lambda x: x["score"].idxmax()]
+        best_bottom = catalog[catalog["type"]=="bottom"].loc[lambda x: x["score"].idxmax()]
+        outfit.extend([best_top["image"], best_bottom["image"]])
+        exclude = ["dress"]
+    else:
+        # Recommend dress
+        best_dress = catalog[catalog["type"]=="dress"].loc[lambda x: x["score"].idxmax()]
+        outfit.append(best_dress["image"])
+        exclude = ["top","bottom"]
+    
+    extra_types = [t for t in types if t not in exclude]
+    for etype in extra_types:
+        if etype in ["top","bottom","dress"]:  # skip core types (already chosen)
+            continue
+        items = catalog[catalog["type"]==etype]
+        best_item = items.loc[items["score"].idxmax()]
+        outfit.append(best_item["image"])
+
+    return outfit
+    
