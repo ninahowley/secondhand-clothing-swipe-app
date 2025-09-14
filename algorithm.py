@@ -10,7 +10,9 @@ catalog = pd.read_csv("clothing.csv")
 
 # TODO: from the app, get a user swipes where the information is similar
 # to the catalog with an extra variable 1/0 where it shows if the person likes it or not
-df = pd.read_csv("user_swipes.csv")  
+df = pd.read_csv("swiped.csv")  
+
+# df = pd.read_csv("test_swipes.csv")
 
 
 X = df[["style", "color", "type"]] # different categories
@@ -28,6 +30,10 @@ X_encoded = encoder.fit_transform(X).toarray()
 X_train, X_test, y_train, y_test = train_test_split(
     X_encoded, y, test_size=0.2, random_state=42
 )
+print("X_test: ", len(X_test))
+print("Y_test: ", len(y_test))
+print("X_train: ", len(X_train))
+print("Y_train: ", len(y_train))
 
 # Create a regression to see what the user would like
 model = LogisticRegression(max_iter=500)
@@ -37,25 +43,31 @@ print("✅ Model trained. Accuracy:", model.score(X_test, y_test))
 
 def prediction(style, color, clothing_type):
     """Return probability that user likes an item"""
-    X_new = encoder.transform([[style, color, clothing_type]]).toarray()
-    prob = model.predict_proba(X_new)[0][1]
+    X_new = pd.DataFrame(
+        [[style, color, clothing_type]],
+        columns=["style", "color", "type"]
+    )
+    X_new_encoded = encoder.transform(X_new).toarray()
+    prob = model.predict_proba(X_new_encoded)[0][1]
     return prob
 
+# Testing the algorithm
 print("Emo top:", prediction("emo", "black", "top"))
-print("Twee dress:", prediction("twee", "black", "dress"))
+print("Twee dress:", prediction("twee", "pink", "dress"))
 
-def recommend_items(catalog, top_n=3):
+def recommend_items():
     scores = []
-    for _, row in catalog.iterrows():
+    for _, row in df.iterrows():
         prob = prediction(row["style"], row['color'], row["type"])
         scores.append((row["image"], row["color"], row["style"], row["type"], prob))
    
     scored_df = pd.DataFrame(scores, columns=["image", "style", "color", "type", "score"])
-    return scored_df.sort_values("score", ascending=False).head(top_n)
+    return scored_df.sort_values("score", ascending=False) #returns a DataFrame of all swiped things in order of highest score to lowest
 
 def recommend_outfits():
 
-    catalog = catalog.copy()
+    global catalog # The catalog outside of the function
+    catalog = catalog.copy() 
 
     # Score every item
     catalog["score"] = catalog.apply(lambda r: prediction(r["style"], r["color"], r["type"]), axis=1)
@@ -96,4 +108,7 @@ def recommend_outfits():
         outfit.append(best_item["image"])
 
     return outfit
-    
+
+
+
+print(recommend_outfits())

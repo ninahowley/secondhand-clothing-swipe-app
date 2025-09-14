@@ -3,8 +3,8 @@ import React from 'react'
 
 const app = () => {
   return (
-    <View style = {styles.container}>
-      <Text style = {styles.text}> Swatch </Text>
+    <View style = {[styles.container, {backgroundColor:'black'}]}>
+      <Text style = {styles.text}> Closet </Text>
     </View>
   )
 }
