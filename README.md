@@ -10,10 +10,10 @@ We decided to create something that could help people not only find their style,
 - Support for multiple clothing types (shoes, accessories, etc.)
 
 # Figma Prototype:
-https://www.figma.com/proto/jjY8fPkx0rxQKpF8m0YBmA/Swatch?node-id=134-108&p=f&t=03y2F48QYEPuiOga-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1
+https://www.figma.com/proto/jjY8fPkx0rxQKpF8m0YBmA/Swatch?node-id=139-98&p=f&t=03y2F48QYEPuiOga-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1
 
 # Presentation:
-https://docs.google.com/presentation/d/1leZryhjJqgnBBPO8OUuOHwsZatZM9pk1NqSYc41FIIk/edit?slide=id.g37edfc38dcf_1_19#slide=id.g37edfc38dcf_1_19 
+https://docs.google.com/presentation/d/1leZryhjJqgnBBPO8OUuOHwsZatZM9pk1NqSYc41FIIk/present?slide=id.p
 
 # to run test.html:
 1. python -m http.server 8000
