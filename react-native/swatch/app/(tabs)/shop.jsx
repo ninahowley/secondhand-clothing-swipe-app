@@ -27,6 +27,14 @@ const sendSwipe = async (item, liked) =>{
   }
 }
 
+export default function App() {
+  const dislike = () => {
+    Alert.alert('Dislike Button Pressed!');
+  };
+  const like = () => {
+    Alert.alert('Like Button Pressed!');
+  };
+
 const GradientButton = ({ title, width = 90 }) => {
   return (
     <TouchableOpacity style={{ width }}>
@@ -41,14 +49,6 @@ const GradientButton = ({ title, width = 90 }) => {
     </TouchableOpacity>
   );
 };
-
-export default function App() {
-  const dislike = () => {
-    Alert.alert('Dislike Button Pressed!');
-  };
-  const like = () => {
-    Alert.alert('Like Button Pressed!');
-  };
 
   return (
     <View style={[styles.container, { backgroundColor: 'black' }]}>
