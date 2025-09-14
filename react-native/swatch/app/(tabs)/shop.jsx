@@ -2,7 +2,10 @@ import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import clothing from '@/assets/images/top_goth_black.jpg';
+import * as FileSystem from 'expo-file-system';
+import * as Asset from 'expo-asset';
+import Papa from 'papaparse';
+
 
 
 export default function OutfitSwiper(){
@@ -76,7 +79,7 @@ export default function OutfitSwiper(){
 
       <View style={styles.imageContainer}>
         <Image
-          source={clothing}
+          source={"https://media-photos.depop.com/b1/44456228/2943216441_f8cc10e8c5e24e04aa1b833367c1ffab/P0.jpg"}
           style={{ width: 300, height: 300, marginLeft: 10, marginTop: 10 }}
           resizeMode="contain"
         />
