@@ -4,6 +4,29 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import clothing from '@/assets/images/top_goth_black.jpg';
 
+const sendSwipe = async (item, liked) =>{
+  try{
+    const response = await fetch("http://localhost:8081/shop", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        title: item.title,
+        style: item.style,
+        type_: item.type,
+        color: item.color, 
+        url: item.url,
+        image: item.image,
+        liked: liked? 1:0
+      }),
+    });
+
+    const result = await response.json();
+    console.log("Swipe respones:", result);
+  } catch (error) {
+    console.error("Error: ", error);
+  }
+}
+
 const GradientButton = ({ title, width = 90 }) => {
   return (
     <TouchableOpacity style={{ width }}>
