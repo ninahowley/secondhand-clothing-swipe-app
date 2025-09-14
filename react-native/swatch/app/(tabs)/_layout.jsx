@@ -2,7 +2,7 @@ import { Tabs } from 'expo-router';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Image, View } from 'react-native';
 import tabBackground from "@/assets/images/tab_background.png"
-import swatchLogo from "@/assets/images/swatch_logo.png"
+import swatchLogo from "@/assets/images/swatch-logo-nav.png"
 
 export default function RootLayout() { 
   return (<Tabs screenOptions={{
