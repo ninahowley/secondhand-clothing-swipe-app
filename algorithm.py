@@ -5,6 +5,7 @@ import pandas as pd
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
 catalog = pd.read_csv("clothing.csv")
 
@@ -39,6 +40,10 @@ print("Y_train: ", len(y_train))
 model = LogisticRegression(max_iter=500)
 model.fit(X_train, y_train)
 
+y_pred = model.predict(X_test)
+acc = accuracy_score(y_test, y_pred)
+print("Accuracy:", acc)
+
 print("✅ Model trained. Accuracy:", model.score(X_test, y_test))
 
 def prediction(style, color, clothing_type):
@@ -53,7 +58,7 @@ def prediction(style, color, clothing_type):
 
 # Testing the algorithm
 print("Emo top:", prediction("emo", "black", "top"))
-print("Twee dress:", prediction("twee", "pink", "dress"))
+print("Twee dress:", prediction("twee", "white", "dress"))
 
 def recommend_items():
     scores = []
