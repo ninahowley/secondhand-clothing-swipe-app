@@ -62,7 +62,7 @@ def recommend_items():
         scores.append((row["image"], row["color"], row["style"], row["type"], prob))
    
     scored_df = pd.DataFrame(scores, columns=["image", "style", "color", "type", "score"])
-    return scored_df.sort_values("score", ascending=False) #returns a DataFrame of all swiped things in order of highest score to lowest
+    return scored_df.sort_values("score", ascending=False) # Returns a DataFrame of all swiped things in order of highest score to lowest
 
 def recommend_outfits():
 
@@ -71,7 +71,7 @@ def recommend_outfits():
 
     # Score every item
     catalog["score"] = catalog.apply(lambda r: prediction(r["style"], r["color"], r["type"]), axis=1)
-    
+
     likes = df[df["swipe"] == 1]  # only liked items
     style_counts = likes["style"].value_counts()
     total_likes = style_counts.sum() if len(style_counts) > 0 else 1  # avoid div by 0
