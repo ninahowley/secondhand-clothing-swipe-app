@@ -1,14 +1,37 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import clothing from '@/assets/images/top_goth_black.jpg';
 
-const sendSwipe = async (item, liked) =>{
-  try{
-    const response = await fetch("http://localhost:8081/shop", {
+
+export default function OutfitSwiper(){
+  const [catalog, setCatalog] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const loadCSV = async () => {
+      const csvUrl = FileSystem.asset("clothing.csv".url);
+      const csv = await FileSystem.readAsStringAsync(csvUrl);
+
+      const result = papa.parse(csv, {header: true});
+      setItems(results.data);  
+    }
+
+    
+  }, []);
+
+  const swipeLiked = (liked) => {
+    if (catalog.length === 0) return;
+
+    const currentItem = catalog[currentIndex];
+    console.log("User Swiped: ", liked, currentItem);
+
+    // Tis is not getting the stuff from the /swipe from the app.py 
+    // look at line 20-21 in app.py, 
+    fetch("http://localhost:8081/swipe", {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
+      header: {"Content-Type": "application/json"},
       body: JSON.stringify({
         title: item.title,
         style: item.style,
@@ -19,36 +42,29 @@ const sendSwipe = async (item, liked) =>{
         liked: liked? 1:0
       }),
     });
-
-    const result = await response.json();
-    console.log("Swipe respones:", result);
-  } catch (error) {
-    console.error("Error: ", error);
-  }
-}
-
-export default function App() {
-  const dislike = () => {
-    Alert.alert('Dislike Button Pressed!');
-  };
-  const like = () => {
-    Alert.alert('Like Button Pressed!');
+    setCurrentIndex((prev) => (prev + 1) % catalog.length);
   };
 
-const GradientButton = ({ title, width = 90 }) => {
-  return (
-    <TouchableOpacity style={{ width }}>
-      <LinearGradient
-        colors={['#EF50BE', '#FFB5E8']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-        style={styles.gradient}
-      >
-        <Text style={styles.buttonText}>{title}</Text>
-      </LinearGradient>
-    </TouchableOpacity>
-  );
-};
+  // If done loading
+  if (catalog.length === 0) return <p>Loading...</p>;
+
+  const currentItem = catalog[currentIndex];
+  
+
+  const GradientButton = ({ title, width = 90 }) => {
+    return (
+      <TouchableOpacity style={{ width }}>
+        <LinearGradient
+          colors={['#EF50BE', '#FFB5E8']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={styles.gradient}
+        >
+          <Text style={styles.buttonText}>{title}</Text>
+        </LinearGradient>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <View style={[styles.container, { backgroundColor: 'black' }]}>
@@ -72,11 +88,11 @@ const GradientButton = ({ title, width = 90 }) => {
         Antilia femme black satin puff sleeve ruffle ruched button up
       </Text>
 
-      <View style={styles.containerRow}>
-        <TouchableOpacity onPress={dislike}>
+      <View style={styles.containerRow}> 
+        <TouchableOpacity onPress={swipeLiked(0)}>
           <Ionicons name="close-circle" size={110} color="#9747ff" />
         </TouchableOpacity>
-        <TouchableOpacity onPress={like}>
+        <TouchableOpacity onPress={swipeLiked(1)}>
           <Ionicons name="heart" size={110} color="#EF50BE" />
         </TouchableOpacity>
       </View>
