@@ -4,6 +4,10 @@
 # python -m http.server 8000
 # http://localhost:8000/test.html
 
+# to run expo:
+# cd to swatch
+# npx expo start
+
 This project is made for HackMIT.
 We decided to create something that could help people not only find their style, but also be sustainable via thrifting.
 
