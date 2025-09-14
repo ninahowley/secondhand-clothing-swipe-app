@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Women's Black Blouse",
+    "description": "Black satin puff sleeve ruffle ruched button up top",
+    "type": "top",
+    "style": "goth",
+    "color": "black",
+    "url": "https://www.depop.com/products/dani_ggg-antilia-femme-black-satin-puff/",
+    "image": "@/assets/images/top_goth_black.jpg"
+  },
+  {
+    "title": "Women's Black and Blue Blouse",
+    "description": "Dead-stock blue, black, and purple express plaid blouse",
+    "type": "top",
+    "style": "twee",
+    "color": "purple",
+    "url": "https://www.depop.com/products/holyduds-amazing-office-siren-dead-stock-blue/",
+    "image": "/assets/images/top_twee_purple.jpg"
+  },
+  {
+    "title": "Women's Black Skirt",
+    "description": "Black lace ruffle skirt",
+    "type": "bottom",
+    "style": "goth",
+    "color": "black",
+    "url": "https://www.depop.com/products/liv_copp-black-lace-ruffle-skirt/",
+    "image": "@/assets/images/bottom_goth_black.jpg"
+  },
+  {
+    "title": "Women's Blue Skirt",
+    "description": "Reworked raw edge wool skirt",
+    "type": "bottom",
+    "style": "twee",
+    "color": "blue",
+    "url": "https://www.depop.com/products/aether003-reworked-raw-edge-wool-skirt/",
+    "image": "@/assets/images/bottom_twee_blue.jpg"
+  },
+  {
+    "title": "Women's Black and Silver Footwear",
+    "description": "V-creeper platform black buckle shoes",
+    "type": "shoes",
+    "style": "goth",
+    "color": "black",
+    "url": "https://www.depop.com/products/larasthrftyclst-demonia-v-creeper-platform-black-buckle/",
+    "image": "@/assets/images/shoes_goth_black_1.jpg"
+  },
+  {
+    "title": "Women's Brown Loafers",
+    "description": "Women leather brown mary janes",
+    "type": "shoes",
+    "style": "twee",
+    "color": "brown",
+    "url": "https://www.depop.com/products/princesspeachee-women-leather-brown-mary-janes/",
+    "image": "@/assets/images/shoes_twee_brown.jpg"
+  },
+  {
+    "title": "Moth Skull Pendant",
+    "description": "New moth skull pendant necklace on black cord",
+    "type": "jewelry",
+    "style": "goth",
+    "color": "black",
+    "url": "https://www.depop.com/products/vtgjewelry-new-moth-skull-pendant-necklace-e94f/",
+    "image": "@/assets/images/jewelry_goth_black.jpg"
+  },
+  {
+    "title": "Fairy Locket",
+    "description": "Fairy locket with handmade doll part",
+    "type": "jewelry",
+    "style": "twee",
+    "color": "white",
+    "url": "https://www.depop.com/products/odddoll-fairy-locket-handmade-doll-part/",
+    "image": "@/assets/images/jewelry_twee_white.jpg"
+  },
+  {
+    "title": "Cross Body Bag",
+    "description": "Black and white cross bag with a touch of grunge and goth style",
+    "type": "accessory",
+    "style": "goth",
+    "color": "black",
+    "url": "https://www.depop.com/products/coveyscloset-black-and-white-cross-bag/",
+    "image": "@/assets/images/accessory_goth_black.jpg"
+  },
+  {
+    "title": "Brown Bag",
+    "description": "Brown rainbow button mini micro bag",
+    "type": "accessory",
+    "style": "twee",
+    "color": "brown",
+    "url": "https://www.depop.com/products/love_light-y2k-gyaru-twee-brown-rainbow/",
+    "image": "@/assets/images/accessory_twee_brown_1.jpg"
+  }
+]
