@@ -10,7 +10,7 @@ catalog = pd.read_csv("clothing.csv")
 
 # TODO: from the app, get a user swipes where the information is similar
 # to the catalog with an extra variable 1/0 where it shows if the person likes it or not
-df = pd.read_csv("swipes.csv")  
+df = pd.read_csv("swiped.csv")  
 
 # df = pd.read_csv("test_swipes.csv")
 
@@ -55,14 +55,14 @@ def prediction(style, color, clothing_type):
 print("Emo top:", prediction("emo", "black", "top"))
 print("Twee dress:", prediction("twee", "pink", "dress"))
 
-def recommend_items(catalog, top_n=3):
+def recommend_items():
     scores = []
-    for _, row in catalog.iterrows():
+    for _, row in df.iterrows():
         prob = prediction(row["style"], row['color'], row["type"])
         scores.append((row["image"], row["color"], row["style"], row["type"], prob))
    
     scored_df = pd.DataFrame(scores, columns=["image", "style", "color", "type", "score"])
-    return scored_df.sort_values("score", ascending=False).head(top_n)
+    return scored_df.sort_values("score", ascending=False) #returns a DataFrame of all swiped things in order of highest score to lowest
 
 def recommend_outfits():
 
