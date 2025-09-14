@@ -27,6 +27,12 @@ export default function RootLayout() {
         height:80,
         paddingTop:15
       },
+      headerRight: () => (
+          <Ionicons name="cart-outline" color={'black'} size={50}
+            style={{ width: 90, height: 90, alignContent:'center'}}
+            resizeMode="contain"></Ionicons>
+
+          ),
       tabBarShowLabel:false,
       tabBarActiveTintColor: '#ffffff',
       tabBarInactiveTintColor: '#000000ff'
