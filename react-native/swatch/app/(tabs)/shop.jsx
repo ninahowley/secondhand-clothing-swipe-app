@@ -23,7 +23,6 @@ export default function App() {
   const dislike = () => {
     Alert.alert('Dislike Button Pressed!');
   };
-
   const like = () => {
     Alert.alert('Like Button Pressed!');
   };
@@ -52,10 +51,10 @@ export default function App() {
 
       <View style={styles.containerRow}>
         <TouchableOpacity onPress={dislike}>
-          <Ionicons name="close-circle" size={70} color="#9747ff" />
+          <Ionicons name="close-circle" size={110} color="#9747ff" />
         </TouchableOpacity>
         <TouchableOpacity onPress={like}>
-          <Ionicons name="heart" size={70} color="#EF50BE" />
+          <Ionicons name="heart" size={110} color="#EF50BE" />
         </TouchableOpacity>
       </View>
     </View>
@@ -70,9 +69,9 @@ const styles = StyleSheet.create({
   containerRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 60,
-    paddingTop: 20,
-    paddingBottom: 15,
+    paddingHorizontal: 45,
+    paddingTop: 10,
+    paddingBottom: 20,
   },
   imageContainer: {
     alignSelf: 'center',
@@ -86,7 +85,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 30,
-    paddingTop: 20,
+    paddingTop: 30,
     paddingBottom: 15,
   },
   gradient: {
