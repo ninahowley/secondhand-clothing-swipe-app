@@ -29,7 +29,6 @@ const app = () => {
       </View>
       <Text style={[styles.subsection, { paddingTop:20 }]}>Outfit Suggestions</Text>
       <Text style={styles.subtitlePadding}>Dark frilly summer outfit</Text>
-      <Text style={styles.subtitlePadding}>Dark frilly summer outfit</Text>
     </View>
   )
 }
