@@ -71,6 +71,18 @@ def recommend_outfits():
 
     # Score every item
     catalog["score"] = catalog.apply(lambda r: prediction(r["style"], r["color"], r["type"]), axis=1)
+    
+    likes = df[df["swipe"] == 1]  # only liked items
+    style_counts = likes["style"].value_counts()
+    total_likes = style_counts.sum() if len(style_counts) > 0 else 1  # avoid div by 0
+    style_weights = {style: style_counts.get(style,0)/total_likes for style in catalog["style"].unique()}
+
+    def weighted_score(row):
+        base_score = prediction(row["style"], row["color"], row["type"])
+        weight = style_weights.get(row["style"], 1.0)  # default 1 if unseen style
+        return base_score * weight
+
+    catalog["score"] = catalog.apply(weighted_score, axis=1)
 
     # Get all available types
     types = catalog['type'].unique()
