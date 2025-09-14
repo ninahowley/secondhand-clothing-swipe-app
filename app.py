@@ -54,5 +54,17 @@ def recommend_items():
 def recommend_outfits():
     return jsonify(algorithm.recommend_outfits())
 
+@app.route("/get_liked")
+def get_liked():
+    try:
+        # Read CSV
+        df = pd.read_csv("swipes.csv")
+        # Count 1s in the 'swipe' column
+        ones_count = df["liked"].sum()  # assumes 0/1 integers
+        # Return as JSON
+        return jsonify({"count_likes": int(ones_count)})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 if __name__ == "__main__":
     app.run(host = "0.0.0.0", port = 5000, debug = True)
