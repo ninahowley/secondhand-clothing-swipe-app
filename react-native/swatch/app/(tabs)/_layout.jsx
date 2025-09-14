@@ -9,7 +9,8 @@ export default function RootLayout() {
       headerTitleAlign: 'center',
       headerTitleStyle: {
         color: "#ffffff",
-        fontSize: 40
+        fontSize: 40,
+        fontWeight:'bold'
       },
       headerStyle : {
         backgroundColor: "#9747ff",
@@ -28,7 +29,7 @@ export default function RootLayout() {
         paddingTop:15
       },
       headerRight: () => (
-        <Ionicons name="cart-outline" color={'black'} size={50}
+        <Ionicons name="cart" color={'black'} size={50}
           style={{ width: 90, height: 90, alignContent:'center'}}
           resizeMode="contain"></Ionicons>
       ),
@@ -47,7 +48,7 @@ export default function RootLayout() {
       title: "Shop",
       tabBarIcon: ({color, size}) => (
       <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-        <Ionicons name="pricetag-outline" color={color} size={40}></Ionicons>
+        <Ionicons name="pricetag" color={color} size={40}></Ionicons>
       </View>
     ),
     }}/>
@@ -55,7 +56,7 @@ export default function RootLayout() {
     title: "Closet",
     tabBarIcon: ({color, size}) => (
       <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-        <Ionicons name="bag-handle-outline" color={color} size={40}></Ionicons>
+        <Ionicons name="bag-handle" color={color} size={40}></Ionicons>
       </View>
     )
     }}/>
@@ -63,7 +64,7 @@ export default function RootLayout() {
     title: "Profile",
     tabBarIcon: ({color, size}) => (
       <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-        <Ionicons name="person-outline" color={color} size={40}></Ionicons>
+        <Ionicons name="person" color={color} size={40}></Ionicons>
       </View>
     )
     }}/>
