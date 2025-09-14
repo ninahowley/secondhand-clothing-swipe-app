@@ -28,11 +28,17 @@ export default function RootLayout() {
         paddingTop:15
       },
       headerRight: () => (
-          <Ionicons name="cart-outline" color={'black'} size={50}
-            style={{ width: 90, height: 90, alignContent:'center'}}
-            resizeMode="contain"></Ionicons>
-
-          ),
+        <Ionicons name="cart-outline" color={'black'} size={50}
+          style={{ width: 90, height: 90, alignContent:'center'}}
+          resizeMode="contain"></Ionicons>
+      ),
+      headerLeft: () => (
+        <Image
+          source={swatchLogo}
+          style={{ width: 100, height: 100, marginLeft: 10, marginTop:10 }}
+          resizeMode="contain"
+        />
+      ),
       tabBarShowLabel:false,
       tabBarActiveTintColor: '#ffffff',
       tabBarInactiveTintColor: '#000000ff'
@@ -44,13 +50,6 @@ export default function RootLayout() {
         <Ionicons name="pricetag-outline" color={color} size={40}></Ionicons>
       </View>
     ),
-    headerLeft: () => (
-            <Image
-              source={swatchLogo}
-              style={{ width: 90, height: 90, marginLeft: 15, marginTop:10 }}
-              resizeMode="contain"
-            />
-          ),
     }}/>
     <Tabs.Screen name="closet" options={{
     title: "Closet",
